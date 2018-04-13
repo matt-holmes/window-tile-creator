@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<title>matt-holmes.io | Windows Tile Creator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #FFF;
+    line-height: 1.8;
+    background-color: #4C4646;
+}
+
+form {
+    color: #000;
+    line-height: 1.8;
+    background-color: #FFF;
+    padding: 10px 16px !important;
+}
+
+.optional-form-section, .submit-container {
+    margin-top: 64px;
+    margin-bottom: 64px;
+}
+
+.submit-btn {
+    padding: 12px 120px;
+}
+
+.w3-modal {
+    color: #000;
+}
+
+.dd-button {
+    width: 277px;
+    height: 40px;
+    text-align: left;
+}
+
+.color-box {
+    padding: 10px;
+    padding-right: 60px;
+    margin-right: 5px;
+    margin-top: 11px;
+}
+
+.color-display-right{
+    position:absolute;
+    right:0%;
+    transform:translate(0%,-50%);
+    -ms-transform:translate(0%,-50%)
+}
+.ms-teal {
+    background-color: #00ABA9;
+}
+.ms-lime {
+    background-color: #A4C400;
+}
+.ms-green {
+    background-color: #60A917;
+}
+.ms-emerald {
+    background-color: #008A00;
+}
+.ms-cyan {
+    background-color: #1BA1E2;
+}
+.ms-cobalt {
+    background-color: #3E65FF;
+}
+.ms-indigo {
+    background-color: #6A00FF;
+}
+.ms-violet {
+    background-color: #AA00FF;
+}
+.ms-pink {
+    background-color: #F472D0;
+}
+.ms-magenta {
+    background-color: #D80073;
+}
+.ms-crimson {
+    background-color: #A20025;
+}
+.ms-red {
+    background-color: #E51400;
+}
+.ms-orange {
+    background-color: #FA6800;
+}
+.ms-amber {
+    background-color: #F0A30A;
+}
+.ms-yellow {
+    background-color: #E3C800;
+}
+.ms-brown {
+    background-color: #825A2C;
+}
+.ms-olive {
+    background-color: #6D8764;
+}
+.ms-steel {
+    background-color: #647687;
+}
+.ms-mauve {
+    background-color: #76608A;
+}
+.ms-taupe {
+    background-color: #87794E;
+}
+
+#top {
+    padding-top: 64px;
+    padding-bottom: 16px;
+}
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+</style>
+<body>
+
+    <div class="w3-top">
+      <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
+        <a href="#home" class="w3-bar-item w3-button">matt-holmes.io</a>
+      </div>
+    </div>
+  <div class="main-wrapper">
+    <!-- Container (About Section) -->
+    <div class="w3-container" id="top">
+      <h3 class="w3-center">WINDOWS TILE CREATOR</h3>
+    </div>
+
+    <div id="validation-top" class="w3-panel w3-red w3-content w3-card-4" style="display:none">
+        <h4 class="w3-center w3-text-white" >Please enter valid inputs.</h4>
+    </div>
+
+    <div class="w3-content w3-card-4 w3-margin-bottom">
+        <div class="w3-container w3-black">
+            <h4 class="w3-center">REQUIRED INPUTS</h4>
+        </div>
+        <form novalidate class="w3-container">
+            <label class="w3-text-blue">Tile name</label>
+            <input name="tile-name" class="w3-input w3-border w3-round w3-light-grey" type="text">
+            <div name="tile-name-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">URL of tile's website</label>
+            <input name="redirect-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com" type="url">
+            <div name="redirect-url-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">URL of primary image - medium tile</label>
+            <input name="med-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
+            <div name="med-image-url-helper" class="w3-text-red" style="display:none"></div>
+        </form>
+    </div>
+
+    <div class="w3-content w3-card-4 optional-form-section">
+        <div class="w3-container w3-black">
+            <h4 class="w3-center">OPTIONAL INPUTS</h4>
+        </div>
+        <form novalidate class="w3-container ">
+            <label class="w3-text-blue">Tile Color</label><br>
+            <div class="w3-dropdown-click">
+              <button id="color-drop-down" class="w3-button w3-light-grey dd-button w3-border w3-round w3-light-grey"></button>
+              <div id="dd-container" class="w3-dropdown-content w3-bar-block w3-border w3-light-grey">
+                <a href="javascript:void(0);" data-value="Lime|A4C400" class="w3-bar-item w3-button color-item">Lime<span class="color-box w3-tag color-display-right ms-lime"></span></a>
+                <a href="javascript:void(0);" data-value="Green|60A917" class="w3-bar-item w3-button color-item">Green<span class="color-box w3-tag color-display-right ms-green"></span></a>
+                <a href="javascript:void(0);" data-value="Emerald|008A00" class="w3-bar-item w3-button color-item">Emerald<span class="color-box w3-tag color-display-right ms-emerald"></span></a>
+                <a href="javascript:void(0);" data-value="Teal|00ABA9" class="w3-bar-item w3-button color-item">Teal<span class="color-box w3-tag color-display-right ms-teal"></span></a>
+                <a href="javascript:void(0);" data-value="Cyan|1BA1E2" class="w3-bar-item w3-button color-item">Cyan<span class="color-box w3-tag color-display-right ms-cyan"></span></a>
+                <a href="javascript:void(0);" data-value="Cobalt|3E65FF" class="w3-bar-item w3-button color-item">Cobalt<span class="color-box w3-tag color-display-right ms-cobalt"></span></a>
+                <a href="javascript:void(0);" data-value="Indigo|6A00FF" class="w3-bar-item w3-button color-item">Indigo<span class="color-box w3-tag color-display-right ms-indigo"></span></a>
+                <a href="javascript:void(0);" data-value="Violet|AA00FF" class="w3-bar-item w3-button color-item">Violet<span class="color-box w3-tag color-display-right ms-violet"></span></a>
+                <a href="javascript:void(0);" data-value="Pink|F472D0" class="w3-bar-item w3-button color-item">Pink<span class="color-box w3-tag color-display-right ms-pink"></span></a>
+                <a href="javascript:void(0);" data-value="Magenta|D80073" class="w3-bar-item w3-button color-item">Magenta<span class="color-box w3-tag color-display-right ms-magenta"></span></a>
+                <a href="javascript:void(0);" data-value="Crimson|A20025" class="w3-bar-item w3-button color-item">Crimson<span class="color-box w3-tag color-display-right ms-crimson"></span></a>
+                <a href="javascript:void(0);" data-value="Red|E51400" class="w3-bar-item w3-button color-item">Red<span class="color-box w3-tag color-display-right ms-red"></span></a>
+                <a href="javascript:void(0);" data-value="Orange|FA6800" class="w3-bar-item w3-button color-item">Orange<span class="color-box w3-tag color-display-right ms-orange"></span></a>
+                <a href="javascript:void(0);" data-value="Amber|F0A30A" class="w3-bar-item w3-button color-item">Amber<span class="color-box w3-tag color-display-right ms-amber"></span></a>
+                <a href="javascript:void(0);" data-value="Yellow|E3C800" class="w3-bar-item w3-button color-item">Yellow<span class="color-box w3-tag color-display-right ms-yellow"></span></a>
+                <a href="javascript:void(0);" data-value="Brown|825A2C" class="w3-bar-item w3-button color-item">Brown<span class="color-box w3-tag color-display-right ms-brown"></span></a>
+                <a href="javascript:void(0);" data-value="Taupe|87794E" class="w3-bar-item w3-button color-item">Taupe<span class="color-box w3-tag color-display-right ms-taupe"></span></a>
+                <a href="javascript:void(0);" data-value="Olive|6D8764" class="w3-bar-item w3-button color-item">Olive<span class="color-box w3-tag color-display-right ms-olive"></span></a>
+                <a href="javascript:void(0);" data-value="Steel|647687" class="w3-bar-item w3-button color-item">Steel<span class="color-box w3-tag color-display-right ms-steel"></span></a>
+                <a href="javascript:void(0);" data-value="Mauve|76608A" class="w3-bar-item w3-button color-item">Mauve<span class="color-box w3-tag color-display-right ms-mauve"></span></a>
+                <a href="javascript:void(0);" data-value="Other|other" class="w3-bar-item w3-button color-item">Other</a>
+              </div>
+            </div>
+            <br>
+            <label id="other-color-label" class="w3-text-blue" style="display:none">Other Color</label>
+            <input name="other-color" id="other-color" class="w3-input w3-border w3-round w3-light-grey" style="display:none" placeholder="#FFFFFF" type="text">
+            <div name="other-color-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">URL of image for wide tile</label>
+            <input name="wide-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
+            <div name="wide-image-url-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">URL of image for small tile</label>
+            <input name="small-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
+            <div name="small-image-url-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">URL of image for large tile (windows desktop only)</label>
+            <input name="large-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
+            <div name="large-image-url-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">Tooltip</label>
+            <input name="tooltip" class="w3-input w3-border w3-round w3-light-grey" type="text">
+            <div name="tooltip-helper" class="w3-text-red" style="display:none"></div>
+        </form>
+    </div>
+
+    <div class="w3-content w3-container w3-center submit-container">
+      <button class="w3-center w3-btn w3-black submit-btn w3-ripple" id="submit">SUBMIT</button>
+    </div>
+    <div id="browser-modal" class="w3-modal">
+      <div class="w3-modal-content">
+        <header class="w3-container w3-black">
+          <span onclick="document.getElementById('browser-modal').style.display='none'"
+          class="w3-button w3-display-topright">&times;</span>
+         <h4>INCOMPATIBLE BROWSER</h4>
+        </header>
+        <div class="w3-container">
+            <p>This site is used to create Windows Tiles from the <strong>Edge Browser</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="working-modal" class="w3-modal w3-animate-opacity ">
+    <div class="w3-modal-content w3-card-2">
+      <header class="w3-container w3w3-light-grey w3-bottombar w3-topbar w3-leftbar w3-rightbar w3-border-gray">
+        <h2 id="working-text" class="w3-center w3-text-black">Working</h2>
+      </header>
+    </div>
+  </div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off footer">
+  <a href="#top" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+  </div>
+  <p>Powered by <a href="https://aws.amazon.com/" title="AWS" target="_blank">AWS</a></p>
+</footer>
+<script>
+
+(function mainWrapper(){
+
+    var self = this;
+    var colorDropDown = document.querySelector('#color-drop-down');
+    var submitButton = document.querySelector('#submit');
+    var colorItems = document.querySelectorAll( '.color-item' );
+    var validationTop = document.querySelector( '#validation-top' );
+    var selectedColor = '';
+
+    if (!(/Edge/.test(navigator.userAgent))) {
+    //  document.getElementById('browser-modal').style.display='block';
+    }
+
+    colorDropDown.addEventListener('click', function(e) {
+        e.preventDefault();
+        var dropdownStatus = self.openCloseDropDown();
+        var offset = dropdownStatus == 'open' ? 90 : -140;
+        self.autoHeight(offset);
+    }, false);
+
+    submitButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        data = self.getData(selectedColor);
+        if(self.isValidInputs(data)) {
+            validationTop.setAttribute( 'style', 'display:none' );
+            self.submitInputs(data);
+            self.autoHeight(60)
+        } else {
+            validationTop.setAttribute( 'style', 'display:block' );
+            window.scrollTo(0,0);
+            self.autoHeight(100);
+        }
+    }, false);
+
+    for ( var i = 0, len = colorItems.length; i < len; i++ ) {
+        (function colorItemIife(index){
+            colorItems[index].addEventListener('click', function(e) {
+                self.openCloseDropDown();
+                self.autoHeight(-60);
+                var elem = document.querySelector( '#color-drop-down' );
+                var html = elem.innerHTML;
+                var otherColorInput = document.querySelector('#other-color');
+                var otherColorLabel = document.querySelector('#other-color-label');
+                var otherColorHelper = document.querySelector('div[name="other-color-helper"]');
+                vals = colorItems[index].getAttribute('data-value').split('|');
+                if(vals[1] == 'other') {
+                    elem.innerHTML = 'Other';
+                    otherColorInput.setAttribute( 'style', 'display:block' );
+                    otherColorLabel.setAttribute( 'style', 'display:block' );
+
+                } else {
+                    elem.innerHTML = self.getDropDownInnerHtml(vals[0]);
+                    otherColorInput.setAttribute( 'style', 'display:none' );
+                    otherColorLabel.setAttribute( 'style', 'display:none' );
+                    otherColorHelper.setAttribute( 'style', 'display:none' );
+                    otherColorInput.value = '';
+                }
+                selectedColor = vals[1];
+            }, false);
+        })(i);
+    }
+})();
+
+function getData(selectedColor) {
+    var data = [];
+    for(i in  document.forms) {
+        var elements = document.forms[i].elements;
+        for(j in elements) {
+            if(elements[j].name && elements[j].type) {
+                var dataObject = {
+                    name: elements[j].name,
+                    value: elements[j].value,
+                    type: elements[j].type,
+                    validationMessage: elements[j].validationMessage
+                };
+                if(i == 0 && elements[j].value == '') {
+                    dataObject.validationMessage = 'Please enter a value.';
+                }
+                if(elements[j].name == 'other-color' &&
+                    !/^#[0-9A-F]{6}$/i.test(elements[j].value) &&
+                    elements[j].value != '') {
+                    dataObject.validationMessage = 'Please enter a valid html color.';
+                }
+                data.push(dataObject);
+            }
+        }
+    }
+
+    data.push({'name' : 'selected-color', value : selectedColor});
+    return data;
+}
+
+
+function getDropDownInnerHtml(item) {
+    lowerItem = item.toLowerCase();
+    return item +
+    '<span class="color-box w3-tag color-display-right ms-' +
+    lowerItem +
+     '"></span>';
+}
+
+function openCloseDropDown() {
+    var x = document.getElementById("dd-container");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        return 'open';
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+        return 'closed';
+    }
+}
+
+function autoHeight(offset) {
+    var mainWrapper = document.querySelector( '.main-wrapper' );
+    var header = document.querySelector( '.w3-top' );
+    var footer = document.querySelector( '.footer' );
+    var body = document.querySelector( 'body' );
+    setTimeout(function(){
+        var headerHeight = this.getElementHeight(header);
+        var footerHeight = this.getElementHeight(footer);
+        var documentHeight = this.getElementHeight(body);
+        var minMainContentHeight = documentHeight - headerHeight - footerHeight + offset;
+        mainWrapper.style.height = 'auto';
+        mainWrapper.style.height = minMainContentHeight+'px';
+
+     }, 300);
+
+}
+
+function getElementHeight (elem) {
+	return Math.max( elem.scrollHeight, elem.offsetHeight, elem.clientHeight );
+}
+
+function isValidInputs(data) {
+    var isValid = true;
+    for (var i in data) {
+        var elem = document.querySelector( `input[name="${data[i].name}"]` );
+        var helpEl = document.querySelector( `div[name="${data[i].name}-helper"]` );
+        if(data[i].validationMessage != '') {
+            if(elem) {
+                elem.classList.add('w3-border-red');
+                if(helpEl) {
+                    helpEl.innerHTML = data[i].validationMessage;
+                    helpEl.setAttribute( 'style', 'display:block' );
+                }
+                isValid = false;
+            }
+        } else {
+            if(elem) {
+                elem.classList.remove('w3-border-red');
+                if(helpEl) {
+                    helpEl.setAttribute( 'style', 'display:none' );
+                }
+            }
+        }
+    }
+
+    return isValid;
+}
+
+function submitInputs(data) {
+    this.addWorkingModal();
+    console.log('here');
+}
+
+function addWorkingModal() {
+    var workingModal = document.querySelector('#working-modal');
+
+    workingModal.setAttribute( 'style', 'display:block' );
+    this.workingTextAnimation();
+    var done = false;
+
+}
+
+function workingTextAnimation() {
+    setTimeout(function(){
+        var workingText = document.querySelector('#working-text');
+        if( workingText.innerHTML == 'Working . . .') {
+            workingText.innerHTML = 'Working';
+        } else {
+            workingText.innerHTML += ' .';
+        }
+        workingTextAnimation()
+     }, 300);
+}
+
+</script>
+
+</body>
+</html>
