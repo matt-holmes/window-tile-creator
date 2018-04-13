@@ -144,9 +144,6 @@ form {
             <h4 class="w3-center">REQUIRED INPUTS</h4>
         </div>
         <form novalidate class="w3-container">
-            <label class="w3-text-blue">Tile name</label>
-            <input name="tile-name" class="w3-input w3-border w3-round w3-light-grey" type="text">
-            <div name="tile-name-helper" class="w3-text-red" style="display:none"></div>
             <label class="w3-text-blue">URL of tile's website</label>
             <input name="redirect-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com" type="url">
             <div name="redirect-url-helper" class="w3-text-red" style="display:none"></div>
@@ -192,6 +189,9 @@ form {
             <label id="other-color-label" class="w3-text-blue" style="display:none">Other Color</label>
             <input name="other-color" id="other-color" class="w3-input w3-border w3-round w3-light-grey" style="display:none" placeholder="#FFFFFF" type="text">
             <div name="other-color-helper" class="w3-text-red" style="display:none"></div>
+            <label class="w3-text-blue">Tile name</label>
+            <input name="tile-name" class="w3-input w3-border w3-round w3-light-grey" type="text">
+            <div name="tile-name-helper" class="w3-text-red" style="display:none"></div>
             <label class="w3-text-blue">URL of image for wide tile</label>
             <input name="wide-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
             <div name="wide-image-url-helper" class="w3-text-red" style="display:none"></div>
@@ -201,9 +201,6 @@ form {
             <label class="w3-text-blue">URL of image for large tile (windows desktop only)</label>
             <input name="large-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
             <div name="large-image-url-helper" class="w3-text-red" style="display:none"></div>
-            <label class="w3-text-blue">Tooltip</label>
-            <input name="tooltip" class="w3-input w3-border w3-round w3-light-grey" type="text">
-            <div name="tooltip-helper" class="w3-text-red" style="display:none"></div>
         </form>
     </div>
 
@@ -249,7 +246,7 @@ form {
     var selectedColor = '';
 
     if (!(/Edge/.test(navigator.userAgent))) {
-    //  document.getElementById('browser-modal').style.display='block';
+      document.getElementById('browser-modal').style.display='block';
     }
 
     colorDropDown.addEventListener('click', function(e) {
