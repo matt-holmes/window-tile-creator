@@ -192,6 +192,17 @@ form {
             <label class="w3-text-blue">Tile name</label>
             <input name="tile-name" class="w3-input w3-border w3-round w3-light-grey" type="text">
             <div name="tile-name-helper" class="w3-text-red" style="display:none"></div>
+        </form>
+    </div>
+
+
+    <div class="w3-content w3-card-4 optional-form-section">
+        <div class="w3-container w3-black">
+            <h4 class="w3-center">ADDITIONAL IMAGES</h4>
+            <P class="w3-center">THE PRIMARY IMAGE WILL BE USED FOR ANY OF THESE THAT ARE LEFT BLANK</P>
+
+        </div>
+        <form novalidate class="w3-container ">
             <label class="w3-text-blue">URL of image for wide tile</label>
             <input name="wide-image-url" class="w3-input w3-border w3-round w3-light-grey" placeholder="https://example.com/icon.png" type="url">
             <div name="wide-image-url-helper" class="w3-text-red" style="display:none"></div>
@@ -246,14 +257,18 @@ form {
     var selectedColor = '';
 
     if (!(/Edge/.test(navigator.userAgent))) {
-      document.getElementById('browser-modal').style.display='block';
+        document.getElementById('browser-modal').style.display='block';
+    } else {
+        var docElm = document.documentElement;
+        if (docElm.msRequestFullscreen) {
+            docElm.msRequestFullscreen();
+        }
     }
 
     colorDropDown.addEventListener('click', function(e) {
         e.preventDefault();
         var dropdownStatus = self.openCloseDropDown();
-        var offset = dropdownStatus == 'open' ? 90 : -140;
-        self.autoHeight(offset);
+        var offset = dropdownStatus == 'open' ? 90 : 5;
     }, false);
 
     submitButton.addEventListener('click', function(e) {
@@ -262,11 +277,9 @@ form {
         if(self.isValidInputs(data)) {
             validationTop.setAttribute( 'style', 'display:none' );
             self.submitInputs(data);
-            self.autoHeight(60)
         } else {
             validationTop.setAttribute( 'style', 'display:block' );
             window.scrollTo(0,0);
-            self.autoHeight(100);
         }
     }, false);
 
@@ -274,7 +287,6 @@ form {
         (function colorItemIife(index){
             colorItems[index].addEventListener('click', function(e) {
                 self.openCloseDropDown();
-                self.autoHeight(-60);
                 var elem = document.querySelector( '#color-drop-down' );
                 var html = elem.innerHTML;
                 var otherColorInput = document.querySelector('#other-color');
@@ -348,26 +360,6 @@ function openCloseDropDown() {
     }
 }
 
-function autoHeight(offset) {
-    var mainWrapper = document.querySelector( '.main-wrapper' );
-    var header = document.querySelector( '.w3-top' );
-    var footer = document.querySelector( '.footer' );
-    var body = document.querySelector( 'body' );
-    setTimeout(function(){
-        var headerHeight = this.getElementHeight(header);
-        var footerHeight = this.getElementHeight(footer);
-        var documentHeight = this.getElementHeight(body);
-        var minMainContentHeight = documentHeight - headerHeight - footerHeight + offset;
-        mainWrapper.style.height = 'auto';
-        mainWrapper.style.height = minMainContentHeight+'px';
-
-     }, 300);
-
-}
-
-function getElementHeight (elem) {
-	return Math.max( elem.scrollHeight, elem.offsetHeight, elem.clientHeight );
-}
 
 function isValidInputs(data) {
     var isValid = true;
