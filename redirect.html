@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<title>matt-holmes.io | Windows Tile Creator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    line-height: 1.8;
+    color: #FFF;
+}
+
+form {
+    color: #000;
+    line-height: 1.8;
+    background-color: #FFF;
+    padding: 10px 16px !important;
+}
+
+.final-step {
+    margin-top: 100px !important;
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+</style>
+<body>
+
+ <div class="main-wrapper" style="display:none">
+    <div class="w3-top">
+      <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
+        <a href="#home" class="w3-bar-item w3-button">matt-holmes.io</a>
+      </div>
+    </div>
+
+
+    <div class="final-step w3-panel w3-red w3-content w3-card-4" style="display:block">
+        <h4 class="w3-center w3-text-white">Final Step</h4>
+    </div>
+
+    <div class="w3-content w3-card-4 w3-margin-bottom w3-margin-top w3-white">
+        <div class="w3-container w3-black">
+            <h4 class="w3-center">PIN THIS PAGE TO THE START</h4>
+        </div>
+        <div class="w3-container w3-padding">
+            When you open your new tile, it will be pointed at the link that was entered in the previous step.
+        </div>
+    </div>
+</div>
+<script>
+
+
+var now = new Date().getTime();
+var difference = now - window.location.hash.substring(1);
+if(difference < 4000) {
+    var link = document.createElement( "link" );
+    link.href = "https://www.w3schools.com/w3css/4/w3.css";
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    document.getElementsByTagName( "head" )[0].appendChild( link );
+    var elem = document.querySelector('.main-wrapper');
+    elem.setAttribute( 'style', 'display:block' );
+    document.body.style.backgroundColor = "#4C4646";
+} else {
+    window.location.href = 'https://bing.com';
+}
+</script>
+</body>
+</html>
