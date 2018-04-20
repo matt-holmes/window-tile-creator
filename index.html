@@ -132,7 +132,7 @@ form {
   <div class="main-wrapper">
     <!-- Container (About Section) -->
     <div class="w3-container" id="top">
-      <h3 class="w3-center">WINDOWS TILE CREATOR</h3>
+      <h4 class="w3-center">WINDOWS TILE CREATOR</h4>
     </div>
 
     <div id="validation-top" class="w3-panel w3-red w3-content w3-card-4" style="display:none">
@@ -390,7 +390,19 @@ function isValidInputs(data) {
 
 function submitInputs(data) {
     this.addWorkingModal();
-    console.log('here');
+    var apiUrl = 'http://api.com';
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', apiUrl);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            var now = new Date().getTime();
+            window.location.href = response['redirect-link'] + '#' + now;
+        }
+    };
+    xhr.send(JSON.stringify(this.getPostData(data)));
 }
 
 function addWorkingModal() {
@@ -398,8 +410,17 @@ function addWorkingModal() {
 
     workingModal.setAttribute( 'style', 'display:block' );
     this.workingTextAnimation();
+
     var done = false;
 
+}
+
+function getPostData(data) {
+    var postData = {}
+    for (var i in data) {
+        postData[data[i].name] = data[i].value;
+    }
+    return postData;
 }
 
 function workingTextAnimation() {
